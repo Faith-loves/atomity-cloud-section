@@ -6,7 +6,7 @@ import { KpiCard } from "./KpiCard";
 import "../styles/feature-section.css";
 
 export function FeatureSection() {
-  const { data, isLoading, isError } = useCloudMetrics();
+  const { data, isLoading, isError, refetch, isFetching } = useCloudMetrics();
 
   if (isLoading) {
     return (
@@ -34,27 +34,28 @@ export function FeatureSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="eyebrow">
-            Multi-Cloud Intelligence
-          </span>
+          <span className="eyebrow">Multi-Cloud Intelligence</span>
 
-          <h2>
-            Unify cloud visibility across every environment.
-          </h2>
+          <h2>Unify cloud visibility across every environment.</h2>
 
           <p>
-            Bring AWS, Azure, Google Cloud and on-premise
-            infrastructure into one intelligent optimization view.
+            Bring AWS, Azure, Google Cloud and on-premise infrastructure into
+            one intelligent optimization view.
           </p>
+
+          <button
+            className="insight-button"
+            type="button"
+            onClick={() => refetch()}
+            disabled={isFetching}
+          >
+            {isFetching ? "Refreshing..." : "Refresh insights"}
+          </button>
         </motion.div>
 
         <div className="providers-grid">
           {data.providers.map((provider, index) => (
-            <ProviderCard
-              key={provider.id}
-              {...provider}
-              delay={index * 0.1}
-            />
+            <ProviderCard key={provider.id} {...provider} delay={index * 0.1} />
           ))}
         </div>
 
@@ -73,7 +74,8 @@ export function FeatureSection() {
             duration: 0.7,
             ease: "easeOut",
           }}
-        ><div className="dashboard__header">
+        >
+          <div className="dashboard__header">
             <div>
               <span className="dashboard__label">Optimization cockpit</span>
               <h3>Live infrastructure signals</h3>
@@ -81,24 +83,11 @@ export function FeatureSection() {
 
             <span className="dashboard__pulse">Live</span>
           </div>
+
           <div className="kpi-grid">
-
-            <KpiCard
-              label="Estimated Savings"
-              value={data.savings}
-              prefix="$"
-            />
-
-            <KpiCard
-              label="Active Resources"
-              value={data.activeResources}
-            />
-
-            <KpiCard
-              label="Efficiency"
-              value={data.efficiency}
-              suffix="%"
-            />
+            <KpiCard label="Estimated Savings" value={data.savings} prefix="$" />
+            <KpiCard label="Active Resources" value={data.activeResources} />
+            <KpiCard label="Efficiency" value={data.efficiency} suffix="%" />
           </div>
 
           <div className="metrics-grid">
