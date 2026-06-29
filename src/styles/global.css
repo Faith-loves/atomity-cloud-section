@@ -9,6 +9,17 @@
   --color-accent-primary: #375dfb;
   --color-accent-success: #12b76a;
   --color-accent-warning: #f79009;
+  --color-accent-primary-strong: #7b61ff;
+  --color-text-on-accent: #ffffff;
+  --color-provider-surface: rgba(255, 255, 255, 0.8);
+  --color-dashboard-surface-start: rgba(255, 255, 255, 0.96);
+  --color-dashboard-surface-end: rgba(255, 255, 255, 0.82);
+  --color-success-soft: rgba(18, 183, 106, 0.12);
+  --color-warning-soft: rgba(247, 144, 9, 0.12);
+  --color-bar-track: #edf1f7;
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 30px 80px rgba(0, 0, 0, 0.08);
+  --shadow-floating: 0 12px 30px rgba(0, 0, 0, 0.08);
 
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
@@ -38,6 +49,12 @@
   --color-accent-primary: #6d8cff;
   --color-accent-success: #32d583;
   --color-accent-warning: #fdb022;
+  --color-provider-surface: rgba(17, 24, 39, 0.86);
+  --color-dashboard-surface-start: rgba(17, 24, 39, 0.86);
+  --color-dashboard-surface-end: rgba(17, 24, 39, 0.86);
+  --color-success-soft: rgba(18, 183, 106, 0.14);
+  --color-warning-soft: rgba(247, 144, 9, 0.14);
+  --color-bar-track: #1f2937;
 }
 
 * {
