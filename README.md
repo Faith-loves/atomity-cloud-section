@@ -7,15 +7,13 @@
 
 This project is my submission for the Atomity Frontend Engineering Challenge.
 
-I chose **Option B (0:45–0:55)** from the reference video and interpreted it as a **Multi-Cloud Intelligence Dashboard** that brings infrastructure signals from multiple cloud providers into a single optimization experience.
+I chose **Option B (0:45-0:55)** from the reference video and interpreted it as a **Multi-Cloud Intelligence Dashboard** that brings infrastructure signals from multiple cloud providers into a single optimization experience.
 
 Rather than recreating the video exactly, I focused on building a polished, interactive section that demonstrates frontend engineering fundamentals, animation craftsmanship, responsive design, and clean architecture.
 
----
+## Selected Feature
 
-# Selected Feature
-
-**Option B (0:45–0:55)**
+**Option B (0:45-0:55)**
 
 The selected feature shows multiple cloud environments connecting to a central dashboard.
 
@@ -33,7 +31,7 @@ These providers feed into a single optimization cockpit that displays:
 - Resource usage
 - Efficiency metrics
 
-# Why I Chose This Feature
+## Why I Chose This Feature
 
 I chose Option B because it allowed me to combine several things I enjoy building:
 
@@ -45,53 +43,49 @@ I chose Option B because it allowed me to combine several things I enjoy buildin
 
 It also gave me an opportunity to demonstrate product thinking rather than simply recreating the visuals from the video.
 
----
+## Tech Stack
 
-# Tech Stack
+### Framework
 
-## Framework
 - React
 - TypeScript
 - Vite
 
-## Animation
+### Animation
+
 - Framer Motion
 
-# Data Fetching & Caching
+### Data Fetching & Caching
+
 - TanStack Query (React Query)
 
-# Styling
+### Styling
+
 - CSS Variables
 - Modern CSS
 
+## Project Structure
 
-
-# Project Structure
-
+```txt
 src/
-├── components/
-│   ├── FeatureSection.tsx
-│   ├── ProviderCard.tsx
-│   ├── KpiCard.tsx
-│   ├── MetricBar.tsx
-│   └── ThemeToggle.tsx
-│
-├── hooks/
-│   └── useCloudMetrics.ts
-│
-├── styles/
-│   ├── global.css
-│   └── feature-section.css
-│
-├── tokens/
-│   └── tokens.ts
-│
-├── App.tsx
-└── main.tsx
+  components/
+    FeatureSection.tsx
+    ProviderCard.tsx
+    KpiCard.tsx
+    MetricBar.tsx
+    ThemeToggle.tsx
+  hooks/
+    useCloudMetrics.ts
+  styles/
+    global.css
+    feature-section.css
+  tokens/
+    tokens.ts
+  App.tsx
+  main.tsx
+```
 
----
-
-# Design Approach
+## Design Approach
 
 The goal was to create a section that feels like a real product rather than a marketing mockup.
 
@@ -102,30 +96,31 @@ The experience follows a simple story:
 3. Metrics and KPIs animate into view.
 4. The user gets an immediate understanding of system health and optimization opportunities.
 
----
-
-# Component Architecture
+## Component Architecture
 
 The application is intentionally split into small reusable components:
 
 ### ProviderCard
+
 Displays a cloud provider and its connection state.
 
 ### KpiCard
+
 Displays animated values such as savings and efficiency.
 
 ### MetricBar
+
 Displays infrastructure signals like CPU, RAM, GPU, and Network utilization.
 
 ### FeatureSection
+
 Composes all pieces into a single animated experience.
 
 ### ThemeToggle
+
 Provides a dark and light theme switch.
 
----
-
-# Design Tokens
+## Design Tokens
 
 Instead of scattering colors and spacing values throughout the application, I created a small token system using CSS variables.
 
@@ -140,22 +135,22 @@ The token architecture centralizes:
 
 This made the UI easier to maintain and allowed dark mode to be implemented with minimal changes.
 
----
-
-# Data Fetching
+## Data Fetching
 
 The section fetches data from:
 
+```txt
 https://dummyjson.com/products?limit=6
+```
 
 The challenge specified that the data did not need to be real cloud data, so I transformed the API response into cloud optimization signals.
 
 Examples:
 
-- Product price → estimated savings
-- Product stock → active resources
-- Product rating → efficiency score
-- Product discount → optimization metrics
+- Product price -> estimated savings
+- Product stock -> active resources
+- Product rating -> efficiency score
+- Product discount -> optimization metrics
 
 This demonstrates:
 
@@ -164,9 +159,7 @@ This demonstrates:
 - Error handling
 - Loading states
 
----
-
-# Caching Strategy
+## Caching Strategy
 
 I used **TanStack Query** because it provides:
 
@@ -178,9 +171,7 @@ I used **TanStack Query** because it provides:
 
 The dashboard data remains cached for a period of time so returning to the section feels instant.
 
----
-
-# Animation Approach
+## Animation Approach
 
 The animations are designed to support the story of the feature rather than distract from it.
 
@@ -196,9 +187,7 @@ The experience includes:
 
 I also respected the user's `prefers-reduced-motion` setting.
 
----
-
-# Modern CSS Features Used
+## Modern CSS Features Used
 
 This project intentionally uses modern CSS capabilities, including:
 
@@ -209,21 +198,20 @@ This project intentionally uses modern CSS capabilities, including:
 - Logical Properties
 - `prefers-reduced-motion`
 
----
-
-# Accessibility
+## Accessibility
 
 Accessibility considerations include:
 
 - Semantic HTML elements
 - Keyboard-accessible controls
+- Visible focus states
+- ARIA labels for interactive controls
+- Meter semantics for optimization bars
 - Sufficient color contrast
 - Reduced motion support
 - Responsive layouts
 
----
-
-# Responsive Design
+## Responsive Design
 
 The section was designed and tested for:
 
@@ -233,21 +221,15 @@ The section was designed and tested for:
 
 The layout progressively simplifies on smaller screens by stacking content and reducing spacing.
 
----
-
-# Dark Mode
+## Dark Mode
 
 As a bonus feature, I implemented a dark/light theme toggle using the token architecture.
 
----
-
-# Tradeoffs
+## Tradeoffs
 
 Because the challenge emphasizes quality over scope, I intentionally focused on one polished section instead of building multiple sections or an entire website.
 
----
-
-# What I Would Improve With More Time
+## What I Would Improve With More Time
 
 - Add SVG connection animations between providers and the dashboard.
 - Add more advanced charts and live data visualizations.
@@ -255,9 +237,7 @@ Because the challenge emphasizes quality over scope, I intentionally focused on 
 - Add deeper analytics around user interaction with the optimization cockpit.
 - Expand accessibility testing and keyboard interactions.
 
----
-
-# Running Locally
+## Running Locally
 
 Install dependencies:
 
@@ -277,8 +257,13 @@ Build for production:
 npm run build
 ```
 
+Run linting:
 
-# Final Thoughts
+```bash
+npm run lint
+```
+
+## Final Thoughts
 
 This challenge was an opportunity to focus on the frontend engineering areas I enjoy most: creating interactive experiences, building reusable components, and translating abstract product ideas into interfaces that feel real and useful.
 

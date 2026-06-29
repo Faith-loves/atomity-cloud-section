@@ -1,16 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useCloudMetrics } from "../hooks/useCloudMetrics";
 import { ProviderCard } from "./ProviderCard";
 import { MetricBar } from "./MetricBar";
 import { KpiCard } from "./KpiCard";
 import "../styles/feature-section.css";
 
+const entranceEase = [0.22, 1, 0.36, 1] as const;
+
 export function FeatureSection() {
   const { data, isLoading, isError, refetch, isFetching } = useCloudMetrics();
+  const shouldReduceMotion = useReducedMotion();
 
   if (isLoading) {
     return (
-      <section className="feature-section">
+      <section className="feature-section" aria-busy="true">
         <p>Loading cloud intelligence...</p>
       </section>
     );
@@ -25,18 +28,20 @@ export function FeatureSection() {
   }
 
   return (
-    <section className="feature-section">
+    <section className="feature-section" aria-labelledby="feature-title">
       <div className="feature-section__content">
         <motion.div
           className="feature-section__intro"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: entranceEase }}
         >
           <span className="eyebrow">Multi-Cloud Intelligence</span>
 
-          <h2>Unify cloud visibility across every environment.</h2>
+          <h2 id="feature-title">
+            Unify cloud visibility across every environment.
+          </h2>
 
           <p>
             Bring AWS, Azure, Google Cloud and on-premise infrastructure into
@@ -46,7 +51,9 @@ export function FeatureSection() {
           <button
             className="insight-button"
             type="button"
-            onClick={() => refetch()}
+            aria-busy={isFetching}
+            aria-label="Refresh cloud intelligence data"
+            onClick={() => void refetch()}
             disabled={isFetching}
           >
             {isFetching ? "Refreshing..." : "Refresh insights"}
@@ -55,7 +62,7 @@ export function FeatureSection() {
 
         <div className="providers-grid">
           {data.providers.map((provider, index) => (
-            <ProviderCard key={provider.id} {...provider} delay={index * 0.1} />
+            <ProviderCard key={provider.id} {...provider} delay={index * 0.08} />
           ))}
         </div>
 
@@ -67,12 +74,14 @@ export function FeatureSection() {
 
         <motion.div
           className="dashboard"
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.97, y: 16 }}
+          whileInView={
+            shouldReduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }
+          }
+          viewport={{ once: true, amount: 0.28 }}
           transition={{
-            duration: 0.7,
-            ease: "easeOut",
+            duration: 0.62,
+            ease: entranceEase,
           }}
         >
           <div className="dashboard__header">
@@ -85,9 +94,23 @@ export function FeatureSection() {
           </div>
 
           <div className="kpi-grid">
-            <KpiCard label="Estimated Savings" value={data.savings} prefix="$" />
-            <KpiCard label="Active Resources" value={data.activeResources} />
-            <KpiCard label="Efficiency" value={data.efficiency} suffix="%" />
+            <KpiCard
+              label="Estimated Savings"
+              value={data.savings}
+              prefix="$"
+              delay={0.05}
+            />
+            <KpiCard
+              label="Active Resources"
+              value={data.activeResources}
+              delay={0.12}
+            />
+            <KpiCard
+              label="Efficiency"
+              value={data.efficiency}
+              suffix="%"
+              delay={0.19}
+            />
           </div>
 
           <div className="metrics-grid">
@@ -97,7 +120,7 @@ export function FeatureSection() {
                 label={metric.label}
                 value={metric.value}
                 unit={metric.unit}
-                delay={index * 0.08}
+                delay={index * 0.06}
               />
             ))}
           </div>

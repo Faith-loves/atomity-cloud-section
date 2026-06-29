@@ -374,6 +374,21 @@
   color: var(--color-text-primary);
   padding: 0.75rem 1rem;
   box-shadow: var(--shadow-floating);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border));
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible,
+.insight-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+  outline-offset: 4px;
 }
 
 
@@ -393,6 +408,20 @@
   padding: 0.85rem 1.15rem;
   font-weight: 700;
   box-shadow: var(--shadow-floating);
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.insight-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-accent-primary) 88%, var(--color-accent-primary-strong));
+  transform: translateY(-2px);
+}
+
+.insight-button:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .insight-button:disabled {
@@ -400,3 +429,10 @@
   opacity: 0.65;
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .insight-button {
+    transition: none;
+  }
+}

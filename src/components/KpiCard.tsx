@@ -1,4 +1,10 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useEffect } from "react";
 
 type KpiCardProps = {
@@ -16,14 +22,16 @@ export function KpiCard({
   suffix = "",
   delay = 0,
 }: KpiCardProps) {
+  const shouldReduceMotion = useReducedMotion();
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, {
-    stiffness: 70,
-    damping: 18,
+    stiffness: 80,
+    damping: 20,
   });
 
-  const displayValue = useTransform(springValue, (latest) =>
-    Math.round(latest).toLocaleString(),
+  const displayValue = useTransform(
+    shouldReduceMotion ? motionValue : springValue,
+    (latest) => Math.round(latest).toLocaleString(),
   );
 
   useEffect(() => {
@@ -33,13 +41,13 @@ export function KpiCard({
   return (
     <motion.article
       className="kpi-card"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.42, delay, ease: "easeOut" }}
     >
       <p>{label}</p>
-      <strong>
+      <strong aria-label={`${label}: ${prefix}${value.toLocaleString()}${suffix}`}>
         {prefix}
         <motion.span>{displayValue}</motion.span>
         {suffix}

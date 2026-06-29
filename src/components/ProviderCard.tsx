@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type ProviderCardProps = {
   name: string;
@@ -7,20 +7,25 @@ type ProviderCardProps = {
   delay?: number;
 };
 
+const cardEase = [0.22, 1, 0.36, 1] as const;
+
 export function ProviderCard({
   name,
   status,
   resources,
   delay = 0,
 }: ProviderCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.article
       className="provider-card"
-      initial={{ opacity: 0, y: 24, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
-      whileHover={{ y: -4 }}
+      aria-label={`${name}: ${resources} resources monitored, ${status}`}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 22, scale: 0.97 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.45 }}
+      transition={{ duration: 0.48, delay, ease: cardEase }}
+      whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
     >
       <div className="provider-card__icon" aria-hidden="true">
         {name.slice(0, 2).toUpperCase()}
@@ -37,3 +42,4 @@ export function ProviderCard({
     </motion.article>
   );
 }
+
