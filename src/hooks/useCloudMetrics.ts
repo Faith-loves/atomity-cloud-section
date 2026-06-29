@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
+const CLOUD_METRICS_ENDPOINT = "https://dummyjson.com/products?limit=6";
+
 type Product = {
   id: number;
   title: string;
@@ -36,11 +38,27 @@ export type CloudDashboardData = {
   activeResources: number;
 };
 
+const cloudSignalLabels = [
+  "CPU",
+  "GPU",
+  "RAM",
+  "PV",
+  "Network",
+  "Cloud",
+] as const;
+
+const cloudProviders: CloudProvider[] = [
+  { id: "aws", name: "AWS", status: "Connected", resources: 42 },
+  { id: "azure", name: "Azure", status: "Connected", resources: 31 },
+  { id: "gcp", name: "Google Cloud", status: "Syncing", resources: 26 },
+  { id: "onprem", name: "On-Premise", status: "Connected", resources: 18 },
+];
+
 async function fetchProducts(): Promise<ProductsResponse> {
-  const response = await fetch("https://dummyjson.com/products?limit=6");
+  const response = await fetch(CLOUD_METRICS_ENDPOINT);
 
   if (!response.ok) {
-    throw new Error("Unable to fetch cloud metrics");
+    throw new Error("Unable to fetch optimization signals");
   }
 
   return response.json();
@@ -52,24 +70,25 @@ function mapProductsToCloudData(products: Product[]): CloudDashboardData {
   const averageRating =
     products.reduce((sum, product) => sum + product.rating, 0) / products.length;
 
-  const labels = ["CPU", "GPU", "RAM", "PV", "Network", "Cloud"];
+  const metrics = products.map((product, index) => {
+    const label = cloudSignalLabels[index] ?? product.title;
+    const optimizationValue = Math.min(
+      95,
+      Math.round(product.discountPercentage * 4),
+    );
 
-  const metrics = products.map((product, index) => ({
-    id: product.id,
-    label: labels[index] ?? product.title,
-    value: Math.min(95, Math.round(product.discountPercentage * 4)),
-    unit: "%",
-    description: `${product.title} optimization signal`,
-  }));
+    return {
+      id: product.id,
+      label,
+      value: optimizationValue,
+      unit: "%",
+      description: `${product.title} mapped into a ${label} optimization signal`,
+    };
+  });
 
   return {
     metrics,
-    providers: [
-      { id: "aws", name: "AWS", status: "Connected", resources: 42 },
-      { id: "azure", name: "Azure", status: "Connected", resources: 31 },
-      { id: "gcp", name: "Google Cloud", status: "Syncing", resources: 26 },
-      { id: "onprem", name: "On-Premise", status: "Connected", resources: 18 },
-    ],
+    providers: cloudProviders,
     savings: Math.round(totalPrice * 12),
     efficiency: Math.min(99, Math.round(averageRating * 20)),
     activeResources: totalStock,
