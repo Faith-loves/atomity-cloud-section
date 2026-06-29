@@ -1,52 +1,63 @@
-# Atomity Frontend Engineering Challenge
+# Atomity Cloud Optimization Section
 
-## Overview
+## Submission Links
+
+- GitHub repository: TODO
+- Live demo: TODO
 
 This project is my submission for the Atomity Frontend Engineering Challenge.
 
-I chose **Option B (0:45–0:55)** from the reference video. The section is my interpretation of how multiple cloud providers can feed data into a single optimization dashboard that gives teams visibility into infrastructure health, resource usage, and potential savings.
+I chose **Option B (0:45–0:55)** from the reference video and interpreted it as a **Multi-Cloud Intelligence Dashboard** that brings infrastructure signals from multiple cloud providers into a single optimization experience.
 
-Instead of recreating the video pixel for pixel, I focused on building a polished and interactive experience that feels like a real product while following the requirements of the challenge.
-
----
-
-## Live Demo
-
-[Add Vercel URL here]
+Rather than recreating the video exactly, I focused on building a polished, interactive section that demonstrates frontend engineering fundamentals, animation craftsmanship, responsive design, and clean architecture.
 
 ---
 
-## GitHub Repository
+# Selected Feature
 
-[Add GitHub URL here]
+**Option B (0:45–0:55)**
+
+The selected feature shows multiple cloud environments connecting to a central dashboard.
+
+My interpretation focuses on:
+
+- AWS
+- Azure
+- Google Cloud
+- On-Premise infrastructure
+
+These providers feed into a single optimization cockpit that displays:
+
+- Infrastructure signals
+- Estimated savings
+- Resource usage
+- Efficiency metrics
 
 ---
 
-# The Idea
+# Live Demo
 
-The section represents a **Multi-Cloud Intelligence Dashboard**.
+TODO
 
-The experience shows:
+---
 
-- Multiple cloud environments (AWS, Azure, Google Cloud, On-Premise)
-- Infrastructure data being unified into a central dashboard
-- Live optimization metrics
-- Estimated savings and efficiency insights
-- Smooth, intentional animations that guide the user through the experience
+# GitHub Repository
+
+TODO
 
 ---
 
 # Why I Chose This Feature
 
-I chose Option B because it allowed me to combine several things that I enjoy building:
+I chose Option B because it allowed me to combine several things I enjoy building:
 
-- Data-driven interfaces
 - Dashboard experiences
+- Data-driven interfaces
 - Motion and micro-interactions
-- Responsive design
-- Frontend architecture
+- Responsive UI systems
+- Component architecture
 
-I also felt this feature gave me the opportunity to demonstrate product thinking rather than simply recreating what was shown in the video.
+It also gave me an opportunity to demonstrate product thinking rather than simply recreating the visuals from the video.
 
 ---
 
@@ -65,11 +76,11 @@ I also felt this feature gave me the opportunity to demonstrate product thinking
 
 ### Styling
 - CSS Variables
-- Modern CSS features
+- Modern CSS
 
 ---
 
-# Component Structure
+# Project Structure
 
 ```text
 src/
@@ -96,19 +107,54 @@ src/
 
 ---
 
+# Design Approach
+
+The goal was to create a section that feels like a real product rather than a marketing mockup.
+
+The experience follows a simple story:
+
+1. Cloud providers appear.
+2. Signals converge into one optimization dashboard.
+3. Metrics and KPIs animate into view.
+4. The user gets an immediate understanding of system health and optimization opportunities.
+
+---
+
+# Component Architecture
+
+The application is intentionally split into small reusable components:
+
+### ProviderCard
+Displays a cloud provider and its connection state.
+
+### KpiCard
+Displays animated values such as savings and efficiency.
+
+### MetricBar
+Displays infrastructure signals like CPU, RAM, GPU, and Network utilization.
+
+### FeatureSection
+Composes all pieces into a single animated experience.
+
+### ThemeToggle
+Provides a dark and light theme switch.
+
+---
+
 # Design Tokens
 
-To avoid hardcoded values across components, I created a small design token system using CSS variables and a central token file.
+Instead of scattering colors and spacing values throughout the application, I created a small token system using CSS variables.
 
-The project defines:
+The token architecture centralizes:
 
 - Colors
-- Radius values
-- Spacing
 - Surface styles
-- Theme variables
+- Radius values
+- Shadows
+- Spacing
+- Theme values
 
-This made it easy to implement dark mode and keep styling consistent throughout the project.
+This made the UI easier to maintain and allowed dark mode to be implemented with minimal changes.
 
 ---
 
@@ -118,14 +164,21 @@ The section fetches data from:
 
 https://dummyjson.com/products?limit=6
 
-The API data is intentionally transformed into cloud-related metrics such as:
+The challenge specified that the data did not need to be real cloud data, so I transformed the API response into cloud optimization signals.
 
-- Estimated savings
-- Resource counts
-- Efficiency scores
-- Dashboard signals
+Examples:
 
-The challenge stated that the data did not need to be real cloud data, so I focused on demonstrating asynchronous data handling and dynamic rendering.
+- Product price → estimated savings
+- Product stock → active resources
+- Product rating → efficiency score
+- Product discount → optimization metrics
+
+This demonstrates:
+
+- Async data loading
+- Dynamic rendering
+- Error handling
+- Loading states
 
 ---
 
@@ -135,29 +188,29 @@ I used **TanStack Query** because it provides:
 
 - Request caching
 - Stale data management
-- Loading states
-- Error states
+- Retry handling
+- Loading and error states
 - Prevention of unnecessary refetching
 
-The data remains cached for a period of time, making revisits feel instantaneous.
+The dashboard data remains cached for a period of time so returning to the section feels instant.
 
 ---
 
 # Animation Approach
 
-The goal of the animations was to support the story of the feature rather than distract from it.
+The animations are designed to support the story of the feature rather than distract from it.
 
-Animations include:
+The experience includes:
 
 - Scroll-triggered entrances
 - Staggered card animations
-- Dashboard reveal animation
+- Dashboard reveal animations
 - Animated metric bars
 - Counting KPI values
-- Subtle hover interactions
+- Hover interactions
 - Pulsing connection indicators
 
-I also respected the user's `prefers-reduced-motion` setting and simplified animations when appropriate.
+I also respected the user's `prefers-reduced-motion` setting.
 
 ---
 
@@ -165,24 +218,24 @@ I also respected the user's `prefers-reduced-motion` setting and simplified anim
 
 This project intentionally uses modern CSS capabilities, including:
 
-- CSS variables
+- CSS Variables
 - `clamp()`
 - `color-mix()`
-- Container queries
-- Logical properties
+- Container Queries
+- Logical Properties
 - `prefers-reduced-motion`
 
 ---
 
 # Accessibility
 
-Some accessibility considerations included:
+Accessibility considerations include:
 
 - Semantic HTML elements
 - Keyboard-accessible controls
 - Sufficient color contrast
 - Reduced motion support
-- Responsive layouts across screen sizes
+- Responsive layouts
 
 ---
 
@@ -190,38 +243,47 @@ Some accessibility considerations included:
 
 The section was designed and tested for:
 
-- Desktop
-- Tablet
-- Mobile
+- Desktop (1280px+)
+- Tablet (768px)
+- Mobile (375px)
 
-The layout adapts by stacking content and simplifying some decorative elements on smaller screens.
+The layout progressively simplifies on smaller screens by stacking content and reducing spacing.
 
 ---
 
 # Dark Mode
 
-As an additional enhancement, I implemented a light and dark theme toggle using the token architecture.
+As a bonus feature, I implemented a dark/light theme toggle using the token architecture.
 
 ---
 
 # Tradeoffs
 
-Given the challenge time limit, I intentionally focused on one highly polished section instead of building multiple sections or a complete application.
+Because the challenge emphasizes quality over scope, I intentionally focused on one polished section instead of building multiple sections or an entire website.
 
-If I had more time, I would add:
+---
 
-- SVG connection animations between cloud providers
-- More realistic charts
-- Live streaming metrics
-- More advanced micro-interactions
-- Additional accessibility improvements
+# What I Would Improve With More Time
+
+- Add SVG connection animations between providers and the dashboard.
+- Add more advanced charts and live data visualizations.
+- Introduce streaming metrics and real-time updates.
+- Add deeper analytics around user interaction with the optimization cockpit.
+- Expand accessibility testing and keyboard interactions.
 
 ---
 
 # Running Locally
 
+Install dependencies:
+
 ```bash
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
@@ -235,6 +297,6 @@ npm run build
 
 # Final Thoughts
 
-This challenge was a great opportunity to focus on frontend fundamentals that I enjoy most: creating interactive experiences, building reusable components, and turning abstract product ideas into interfaces that feel real and useful.
+This challenge was an opportunity to focus on the frontend engineering areas I enjoy most: creating interactive experiences, building reusable components, and translating abstract product ideas into interfaces that feel real and useful.
 
 Thank you for taking the time to review my submission.
