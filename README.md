@@ -2,8 +2,8 @@
 
 ## Submission Links
 
-- GitHub repository: TODO
-- Live demo: TODO
+- GitHub repository: https://github.com/Faith-loves/atomity-cloud-section.git
+- Live demo: https://atomity-cloud-section.vercel.app/
 
 This project is my submission for the Atomity Frontend Engineering Challenge.
 
