@@ -3,6 +3,7 @@ import { useCloudMetrics } from "../hooks/useCloudMetrics";
 import { ProviderCard } from "./ProviderCard";
 import { MetricBar } from "./MetricBar";
 import { KpiCard } from "./KpiCard";
+import "../styles/feature-section.css";
 
 export function FeatureSection() {
   const { data, isLoading, isError } = useCloudMetrics();
@@ -57,6 +58,12 @@ export function FeatureSection() {
           ))}
         </div>
 
+        <div className="connection-layer" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
         <motion.div
           className="dashboard"
           initial={{ opacity: 0, scale: 0.96 }}
@@ -66,8 +73,16 @@ export function FeatureSection() {
             duration: 0.7,
             ease: "easeOut",
           }}
-        >
+        ><div className="dashboard__header">
+            <div>
+              <span className="dashboard__label">Optimization cockpit</span>
+              <h3>Live infrastructure signals</h3>
+            </div>
+
+            <span className="dashboard__pulse">Live</span>
+          </div>
           <div className="kpi-grid">
+
             <KpiCard
               label="Estimated Savings"
               value={data.savings}
