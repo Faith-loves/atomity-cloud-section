@@ -1,9 +1,7 @@
+import { FeatureSection } from "./components/FeatureSection";
+
 function App() {
-  return (
-    <div>
-      <h1>Atomity Cloud Section</h1>
-    </div>
-  );
+  return <FeatureSection />;
 }
 
 export default App;
