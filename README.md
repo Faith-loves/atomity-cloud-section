@@ -33,20 +33,6 @@ These providers feed into a single optimization cockpit that displays:
 - Resource usage
 - Efficiency metrics
 
----
-
-# Live Demo
-
-TODO
-
----
-
-# GitHub Repository
-
-TODO
-
----
-
 # Why I Chose This Feature
 
 I chose Option B because it allowed me to combine several things I enjoy building:
@@ -287,8 +273,9 @@ npm run dev
 
 Build for production:
 
-bash
+```bash
 npm run build
+```
 
 
 # Final Thoughts
