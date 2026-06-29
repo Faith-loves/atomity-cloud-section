@@ -163,14 +163,80 @@
 }
 
 @media (max-width: 768px) {
+  .feature-section {
+    align-items: flex-start;
+  }
+
+  .feature-section__content {
+    gap: 2rem;
+  }
+
   .dashboard {
     padding: 1.5rem;
+    border-radius: var(--radius-lg);
   }
 
   .feature-section h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2.25rem, 10vw, 3rem);
+  }
+
+  .providers-grid,
+  .kpi-grid {
+    grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 520px) {
+  .feature-section {
+    padding-block: 5rem 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .feature-section h2 {
+    font-size: clamp(2rem, 11vw, 2.5rem);
+  }
+
+  .feature-section p {
+    font-size: 0.95rem;
+  }
+
+  .provider-card,
+  .kpi-card {
+    padding: 1.25rem;
+  }
+
+  .kpi-card strong {
+    font-size: 1.75rem;
+  }
+
+  .dashboard {
+    padding: 1.25rem;
+  }
+
+  .dashboard__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .dashboard__header h3 {
+    font-size: 1.5rem;
+  }
+
+  .metric-bar__header {
+    gap: 1rem;
+  }
+
+  .theme-toggle {
+    inset-block-start: 0.75rem;
+    inset-inline-end: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
 .connection-layer {
   position: relative;
   block-size: 70px;
