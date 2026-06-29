@@ -63,26 +63,25 @@ It also gave me an opportunity to demonstrate product thinking rather than simpl
 
 # Tech Stack
 
-### Framework
+## Framework
 - React
 - TypeScript
 - Vite
 
-### Animation
+## Animation
 - Framer Motion
 
-### Data Fetching & Caching
+# Data Fetching & Caching
 - TanStack Query (React Query)
 
-### Styling
+# Styling
 - CSS Variables
 - Modern CSS
 
----
+
 
 # Project Structure
 
-```text
 src/
 ├── components/
 │   ├── FeatureSection.tsx
@@ -103,7 +102,6 @@ src/
 │
 ├── App.tsx
 └── main.tsx
-```
 
 ---
 
@@ -289,11 +287,9 @@ npm run dev
 
 Build for production:
 
-```bash
+bash
 npm run build
-```
 
----
 
 # Final Thoughts
 
