@@ -27,6 +27,19 @@
     var(--color-bg-primary);
 }
 
+[data-theme="dark"] {
+  --color-bg-primary: #070b16;
+  --color-bg-secondary: #101828;
+  --color-surface: #111827;
+  --color-surface-muted: #172033;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-border: #253047;
+  --color-accent-primary: #6d8cff;
+  --color-accent-success: #32d583;
+  --color-accent-warning: #fdb022;
+}
+
 * {
   box-sizing: border-box;
 }
